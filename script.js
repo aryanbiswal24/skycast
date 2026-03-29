@@ -1,4 +1,5 @@
 var apiKey = "e4911486cc4f42fb47befe569cc9f811";
+//our api key 
 
 async function getWeather() {
   var city = document.getElementById("cityInput").value;
@@ -8,9 +9,7 @@ async function getWeather() {
   if (city == "") {
     return;
   }
-
   var url = "https://api.openweathermap.org/data/2.5/weather?q=" + city + "&appid=" + apiKey + "&units=metric";
-
   try {
     var response = await fetch(url);
     var data = await response.json();
@@ -22,7 +21,7 @@ async function getWeather() {
     document.getElementById("cityName").innerText = data.name + ", " + data.sys.country;
     document.getElementById("temperature").innerText = Math.round(data.main.temp) + "°C";
     document.getElementById("humidity").innerText = "Humidity: " + data.main.humidity + "%";
-
+//data collection
     var weather = data.weather[0].main;
     var icon = "🌤️";
 
@@ -35,10 +34,12 @@ async function getWeather() {
 
     document.getElementById("weatherIcon").innerText = icon;
     document.getElementById("weatherCard").classList.remove("hidden");
-
-  } catch (error) {
-    document.getElementById("errorMsg").innerText = "Something went wrong!";
+    //remove hidden command
+  } 
+  catch (error) {
+    document.getElementById("errorMsg").innerText = "Error 404!";
     document.getElementById("errorMsg").classList.remove("hidden");
+    //remove hidden command for error
   }
 
 }
